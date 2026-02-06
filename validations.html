@@ -37,18 +37,43 @@
 
         // Validation du formulaire
         form.addEventListener("submit", function(event) {
-            event.preventDefault();  // Empêcher le rechargement de la page
+            event.preventDefault();  
 
             let telephone = document.getElementById("telephone").value;
 
             if (telephone.length < 9) {
-                message.innerText = "Numéro de téléphone non valide ❌";
+                message.innerText = "Numéro de téléphone non valide ";
                 message.style.color = "red";
             } else {
-                message.innerText = "Données valides ✅";
+                message.innerText = "Données valides ";
                 message.style.color = "green";
             }
         });
+        let email = document.getElementById("email").value;
+        let telephone = document.getElementById("telephone").value;
+        let mdp = document.getElementById("mdp").value;
+
+        // REGEX
+        let regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        if (!regexEmail.test(email)) {
+            message.innerText = "Email non valide ";
+            message.style.color = "red";
+        }
+        else if (telephone.length < 9) {
+            message.innerText = "Numéro de téléphone non valide ";
+            message.style.color = "red";
+        }
+        else if (!regexPassword.test(mdp)) {
+            message.innerText = "Mot de passe faible  (8 caractères, majuscule, minuscule, chiffre)";
+            message.style.color = "red";
+        }
+        else {
+            message.innerText = "Toutes les données sont valides ";
+            message.style.color = "green";
+        }
+    });
     </script>
 </body>
 </html>
